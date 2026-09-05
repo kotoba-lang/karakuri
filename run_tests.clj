@@ -1,5 +1,6 @@
 (require '[clojure.test :as t])
-(def suites '[karakuri.cells.test-adapter-invoke karakuri.cells.test-command-plan
+(def suites '[karakuri.cells.export-roundtrip.cell-parity-test
+              karakuri.cells.test-adapter-invoke karakuri.cells.test-command-plan
               karakuri.cells.test-export-roundtrip karakuri.cells.test-service-resolve
               karakuri.cells.test-state-machines karakuri.methods.test-command
               karakuri.methods.test-export-and-live-and-datom
