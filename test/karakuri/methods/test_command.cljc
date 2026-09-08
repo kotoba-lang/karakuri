@@ -4,7 +4,7 @@
   1:1 Clojure port of `methods/test_command.py`.
   Stdlib + clojure.test only. Parametrized Python cases are expanded into
   separate `(is ...)` forms."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.lang.text] [clojure.test :refer [deftest is testing]]
             [karakuri.methods.command :as sut]))
 
 ;; ── parsing (G8: never guesses the shape) ───────────────────────────────────────────
@@ -96,7 +96,7 @@
   ;; Forcing the T2 headless adapter on a ToS-automation-prohibited service is refused (G2).
   (let [op (sut/plan "karakuri noauto-saas records.list" :prefer-tier sut/TIER-T2)]
     (is (= (:tos-gate op) sut/TOS-REFUSED))
-    (is (clojure.string/includes? (:note op) "G2"))))
+    (is (kotoba.lang.text/includes? (:note op) "G2"))))
 
 (deftest test-g8-unknown-service-degrades-honestly
   (let [op (sut/plan "karakuri totally-made-up-service things.list")]
@@ -129,7 +129,7 @@
   (let [op (sut/plan "karakuri google search.query --q hello" :prefer-tier sut/TIER-T2)]
     (is (= (:tos-gate op) sut/TOS-REFUSED))
     (is (= (:t2-engine op) ""))
-    (is (clojure.string/includes? (:note op) "G2"))))
+    (is (kotoba.lang.text/includes? (:note op) "G2"))))
 
 (deftest test-g2-browser-automation-refused-on-facebook
   (let [op (sut/plan "karakuri facebook posts.list" :prefer-tier sut/TIER-T2)]

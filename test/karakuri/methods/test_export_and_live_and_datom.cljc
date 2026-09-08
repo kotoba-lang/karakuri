@@ -3,7 +3,7 @@
 
   1:1 Clojure port of `methods/test_export_and_live_and_datom.py`.
   Stdlib + clojure.test only. assertRaises → thrown?."
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.lang.text] [clojure.test :refer [deftest is]]
             [karakuri.methods.command :as command]
             [karakuri.methods.export :as export]
             [karakuri.methods.adapter-live :as adapter-live]
@@ -18,7 +18,7 @@
   (let [a (export/build-export-plan "google" :fmt "kotoba-edn")]
     (is (= (:owner a) "member"))               ; G9
     (is (= (:encrypted a) true))               ; G9
-    (is (clojure.string/starts-with? (:secret-ref a) "encref:"))
+    (is (kotoba.lang.text/starts-with? (:secret-ref a) "encref:"))
     (is (= (:dry-run a) true))))               ; G6
 
 (deftest test-export-refuses-non-member-owner
@@ -98,7 +98,7 @@
   (let [op (command/plan "karakuri legacy-portal records.update --token SECRET --name x")
         ent (datom/op-to-entity op PLANNED-AT)]
     (is (= (get ent ":op/args") "name,token"))       ; G3 — keys only
-    (is (not (clojure.string/includes? (get ent ":op/args") "SECRET")))))
+    (is (not (kotoba.lang.text/includes? (get ent ":op/args") "SECRET")))))
 
 (deftest test-plan-to-entities-links-plan-to-ops
   (let [cp (nl-plan/plan-from-brief "show my gmail messages")

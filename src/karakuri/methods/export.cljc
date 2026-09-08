@@ -12,7 +12,7 @@
 
   ExportArtifact is a plain map with the Python dataclass field names as kebab keywords. Pure
   clojure.core; portable .cljc."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def MEMBER "member")                                   ; G9 — own data only
 (def EXPORT-FORMATS ["kotoba-edn" "json" "csv" "markdown"])

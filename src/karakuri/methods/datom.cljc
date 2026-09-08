@@ -18,7 +18,7 @@
   Entities are string-keyed maps keyed by ':ns/name' strings (kept verbatim, the seed.edn
   spelling). sha-256 + the live env read are behind #?(:clj …). Self-contained sha-256 (no
   sibling provides it). clojure.core only; portable .cljc."
-  (:require [karakuri.methods.command :as command]))
+  (:require [kotoba.lang.text] [karakuri.methods.command :as command]))
 
 ;; ── sha-256 (self-contained; copied from the danjo budget_ledger exemplar) ────────────
 (defn- sha256-hex
@@ -59,7 +59,7 @@
 (defn- args-keys
   "G3: serialize only the flag KEYS (sorted), never values (a value could be a secret/token)."
   [op]
-  (clojure.string/join "," (sort (keys (:args op)))))
+  (kotoba.lang.text/join "," (sort (keys (:args op)))))
 
 (defn- require-kw
   "G7: map a gate value to its EDN keyword, REFUSING an unknown value rather than fail-open.

@@ -10,7 +10,7 @@
   refuses with the identical message — the port returning the failure as a
   [:result :string :string] :err value instead of a throw."
   (:require [cheshire.core :as json]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [clojure.test :refer [deftest is testing]]
             [karakuri.cells.export-roundtrip.cell :as cell])
   (:import (java.nio.file Files)))
