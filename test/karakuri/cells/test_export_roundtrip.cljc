@@ -2,7 +2,7 @@
   "State-machine tests for the karakuri export_roundtrip cell (R0).
   1:1 port of cells/test_export_roundtrip.py (ADR-2606160842). .solve() raises at R0."
   (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [karakuri.cells.export-roundtrip.state-machine :as sm]))
 
 (defn- export-run

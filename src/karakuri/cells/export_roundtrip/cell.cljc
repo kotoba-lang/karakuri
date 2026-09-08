@@ -1,7 +1,7 @@
 ;; ported from cells/export_roundtrip/cell.py (unit_refactor stage 0)
 ;; LangGraph Pregel wrapper for the karakuri export_roundtrip (絡繰) cell.
 (ns karakuri.cells.export-roundtrip.cell
-  (:require [clojure.string] [clojure.set] [clojure.edn]))
+  (:require [kotoba.lang.text] [clojure.set] [clojure.edn]))
 
 (declare export-roundtrip-cell)
 

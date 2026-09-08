@@ -3,7 +3,7 @@
 
   1:1 Clojure port of `methods/test_nl_plan.py`. Stdlib + clojure.test only.
   Parametrized pytest cases are expanded into separate (is ...) forms. assertRaises → thrown?."
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.lang.text] [clojure.test :refer [deftest is]]
             [karakuri.methods.nl-plan :as sut]))
 
 (deftest test-heuristic-parses-service-and-verb
@@ -14,8 +14,8 @@
 
 (deftest test-heuristic-facebook-and-delete-verb
   (let [cmd (sut/heuristic-parse "delete a post on facebook")]
-    (is (clojure.string/starts-with? cmd "facebook "))
-    (is (clojure.string/ends-with? cmd ".delete"))))
+    (is (kotoba.lang.text/starts-with? cmd "facebook "))
+    (is (kotoba.lang.text/ends-with? cmd ".delete"))))
 
 (deftest test-heuristic-unknown-service-degrades-to-none
   (is (nil? (sut/heuristic-parse "list all my hooli widgets"))))      ; G8 — never guesses a service

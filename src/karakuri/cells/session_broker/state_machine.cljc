@@ -17,7 +17,7 @@
 
   Conventions: the dataclass BrokerState → a plain map with the SAME string field keys the Python
   `cs.__dict__` round-trips; phase enum values stay strings; ValueError → ex-info."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; G1: only the member's own account is operable.
 (def MEMBER "member")

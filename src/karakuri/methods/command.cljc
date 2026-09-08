@@ -24,7 +24,7 @@
   honestly).
 
   Pure Clojure (clojure.core + clojure.string only), portable .cljc."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ═════════════════════════════════════════════════════════════════════════════
 ;; Constants
@@ -140,7 +140,7 @@
 (defn classify-safety
   "Map a verb to its op safety. Unknown verbs are treated conservatively as :update (mutating)."
   [verb]
-  (get VERB-SAFETY (str/trim (str/lower-case (or verb ""))) SAFETY-UPDATE))
+  (get VERB-SAFETY (str/trim (str/lower (or verb ""))) SAFETY-UPDATE))
 
 (defn is-destructive
   "G5: delete is the only irreversible class; flagged for explicit member confirmation."
@@ -150,7 +150,7 @@
 (defn resolve-service
   "Look the service up in the :representative registry. nil → honest :unknown-service (G8)."
   [service-id]
-  (get SERVICE-REGISTRY (str/trim (str/lower-case (or service-id "")))))
+  (get SERVICE-REGISTRY (str/trim (str/lower (or service-id "")))))
 
 (defn t2-stance
   "The browser-automation stance for a service. Missing → 'prohibited' (default-deny; G2)."
@@ -196,7 +196,7 @@
   Raises ex-info on a malformed command (G8 — never guesses the shape)."
   [line]
   (let [tokens (str/split (str/trim (or line "")) #"\s+")
-        tokens (if (and (seq tokens) (= (str/lower-case (first tokens)) "karakuri"))
+        tokens (if (and (seq tokens) (= (str/lower (first tokens)) "karakuri"))
                  (rest tokens)
                  tokens)]
     (when (< (count tokens) 2)
@@ -224,7 +224,7 @@
                                (recur (+ j 2) rest (assoc acc key (nth rest (inc j))))
                                (recur (inc j) rest (assoc acc key true))))
                            (recur (inc j) rest acc)))))]
-          [service (str/lower-case noun) (str/lower-case verb) args])))))
+          [service (str/lower noun) (str/lower verb) args])))))
 
 (defn plan
   "Parse a command into a dry-run ServiceOp plan with the ToS + mutate gates applied (no network).

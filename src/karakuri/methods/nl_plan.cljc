@@ -13,7 +13,7 @@
 
   CommandPlan is a plain map with the Python dataclass field names as kebab keywords. The live
   env read is behind #?(:clj …). clojure.core + clojure.string only; portable .cljc."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [karakuri.methods.command :as command]))
 
 ;; ── service synonyms a member might say (→ canonical registry id; G8 honest beyond this set) ──
@@ -76,7 +76,7 @@
   variants still hit (surveil→surveillance, gambl→gambling) without substring false-positives
   ('stalk' must NOT fire on bean-stalk; 'betting' must NOT fire on a-betting)."
   [text]
-  (let [low (str/lower-case (or text ""))
+  (let [low (str/lower (or text ""))
         hits (->> CHARTER-RIDER-TERMS
                   (filter (fn [[term _tag]]
                             (re-find (re-pattern (str "\\b" (java.util.regex.Pattern/quote term))) low)))
@@ -99,7 +99,7 @@
   `<service> <noun>.<verb>` command string, or nil when it cannot confidently parse (G8 — never
   guesses a service that is not in the registry)."
   [brief]
-  (let [raw (map #(str/lower-case (str/replace % #"^[.,!?;:'\"()]+|[.,!?;:'\"()]+$" ""))
+  (let [raw (map #(str/lower (str/replace % #"^[.,!?;:'\"()]+|[.,!?;:'\"()]+$" ""))
                  (str/split (or brief "") #"\s+"))
         tokens (vec (remove str/blank? raw))]
     (if (empty? tokens)
