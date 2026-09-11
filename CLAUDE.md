@@ -20,7 +20,7 @@ export**. Routing uses two independent stance axes: `:service/tos-stance` (offic
 construction *even when an API exists* — **Google + Facebook are the canonical `:api-ok` /
 browser-prohibited case** (drive the official API on the member's own account; never browser-automate
 the consumer surface). The T2 engine **browser-use** (LangGraph browser agent over Playwright) plans
-in `src/karakuri/methods/t2_browser.cljc`, where detection-evasion verbs are structurally unrepresentable.
+in `src/karakuri/methods/t2_browser.cljk`, where detection-evasion verbs are structurally unrepresentable.
 
 ISIC J6201 · ISCO 2512/3514 · UNSPSC 81112 (computer programming / web automation).
 

@@ -1,5 +1,5 @@
 (ns karakuri.cells.export-roundtrip.cell
-  ;; Parity port of src/karakuri/cells/export_roundtrip/cell.cljc — the
+  ;; Parity port of src/karakuri/cells/export_roundtrip/cell.cljk — the
   ;; karakuri export_roundtrip (絡繰) cell scaffold (LangGraph Pregel wrapper,
   ;; unit_refactor stage 0). The original signals the R0 scaffold state with a
   ;; throw; here that failure is a value: [:result :string :string] whose :err
