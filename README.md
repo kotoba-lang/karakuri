@@ -65,14 +65,14 @@ non-goals N1–N6.
 ## Try the planner (offline, no network)
 
 ```
-bb test
-bb test
-bb test
-bb test
-bb test
-bb test
+kbb -M:test
+kbb -M:test
+kbb -M:test
+kbb -M:test
+kbb -M:test
+kbb -M:test
 
 # browser-use T2 action plan (dry-run; refuses T1/Google + ToS-prohibited services):
-bb test
-bb test
+kbb -M:test
+kbb -M:test
 ```
