@@ -67,9 +67,9 @@ driving of prohibited-content or third-party ad/affiliate systems (Charter-Rider
 ```
 cd methods && python3 -m pytest                 # command/t2_browser/nl_plan/export/adapter_live/datom (87 tests)
 cd cells   && python3 -m pytest                 # all five coded cells (31 tests)
-bb test
-bb test
-bb test
+kbb -M:test
+kbb -M:test
+kbb -M:test
 ```
 
 (If a global pytest plugin errors on pydantic, prefix `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1` — the
