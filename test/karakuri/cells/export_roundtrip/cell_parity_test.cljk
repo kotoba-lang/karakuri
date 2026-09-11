@@ -1,6 +1,6 @@
 (ns karakuri.cells.export-roundtrip.cell-parity-test
   "Parity test for the kotoba migration of
-  src/karakuri/cells/export_roundtrip/cell.cljc ->
+  src/karakuri/cells/export_roundtrip/cell.cljk ->
   src/karakuri/cells/export_roundtrip/cell.kotoba.
 
   The original cell is an R0 scaffold: export-roundtrip-cell-solve throws an

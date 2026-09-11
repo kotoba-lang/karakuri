@@ -51,7 +51,7 @@ karakuri legacy-portal records.list    # no API + ToS permits → T2 via browser
 The charter-clean reading of *「Google/Facebook を browser 操作する」*: where an official API exists,
 **drive the API on the member's own account** (T1); browser automation of those consumer surfaces is
 ToS-prohibited and karakuri refuses it. The browser-use engine is reserved for GUI-only services whose
-ToS permits automation. **Detection-evasion is unrepresentable** — `src/karakuri/methods/t2_browser.cljc` has no verb
+ToS permits automation. **Detection-evasion is unrepresentable** — `src/karakuri/methods/t2_browser.cljk` has no verb
 for proxy/IP rotation, captcha-solving, stealth fingerprinting, or rate-limit circumvention; building
 such a step raises (G2 / N2).
 
