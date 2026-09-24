@@ -9,11 +9,10 @@
   node; parity means both sides agree that init is empty and that solve
   refuses with the identical message — the port returning the failure as a
   [:result :string :string] :err value instead of a throw."
-  (:require [cheshire.core :as json]
+  (:require [kotoba.io :as kio] [cheshire.core :as json]
             [kotoba.lang.text :as str]
             [kotoba.test :refer [deftest is testing]]
-            [karakuri.cells.export-roundtrip.cell :as cell])
-  (:import (java.nio.file Files)))
+            [karakuri.cells.export-roundtrip.cell :as cell]))
 
 (def amu-bin
   (or (System/getenv "KOTOBA_AMU_BIN")
@@ -25,8 +24,7 @@
        "/src/karakuri/cells/export_roundtrip/cell.kotoba"))
 
 (defn- tmp-dir []
-  (str (Files/createTempDirectory "karakuri-cell-parity"
-                                 (make-array java.nio.file.attribute.FileAttribute 0))))
+  (str (kio/temp-dir "karakuri-cell-parity")))
 
 (defn- run-proc
   "Run [cmd & args], returning {:exit n :out s :err s}."
