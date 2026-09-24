@@ -3,7 +3,7 @@
 
   1:1 Clojure port of `methods/test_export_and_live_and_datom.py`.
   Stdlib + clojure.test only. assertRaises → thrown?."
-  (:require [kotoba.lang.text] [clojure.test :refer [deftest is]]
+  (:require [kotoba.lang.text] [kotoba.test :refer [deftest is]]
             [karakuri.methods.command :as command]
             [karakuri.methods.export :as export]
             [karakuri.methods.adapter-live :as adapter-live]

@@ -1,4 +1,4 @@
-(require '[clojure.test :as t])
+(require '[kotoba.test :as t])
 (def suites '[karakuri.cells.export-roundtrip.cell-parity-test
               karakuri.cells.test-adapter-invoke karakuri.cells.test-command-plan
               karakuri.cells.test-export-roundtrip karakuri.cells.test-service-resolve

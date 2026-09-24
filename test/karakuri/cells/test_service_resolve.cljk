@@ -1,7 +1,7 @@
 (ns karakuri.cells.test-service-resolve
   "State-machine tests for the karakuri service_resolve cell (R0).
   1:1 port of cells/test_service_resolve.py (ADR-2606160842). .solve() raises at R0."
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [karakuri.cells.service-resolve.state-machine :as sm]))
 
 (defn- resolve [service]

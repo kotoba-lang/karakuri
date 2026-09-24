@@ -1,7 +1,7 @@
 (ns karakuri.cells.test-state-machines
   "State-machine tests for the karakuri session_broker cell (R0).
   1:1 port of cells/test_state_machines.py (ADR-2606160842). .solve() raises at R0; ValueError → ex-info."
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [karakuri.cells.session-broker.state-machine :as sm]))
 
 (defn- broker-read
