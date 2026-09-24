@@ -4,7 +4,7 @@
   1:1 Clojure port of `methods/test_t2_browser.py`. Stdlib + clojure.test only.
   Parametrized pytest cases are expanded into separate (is ...) forms. assertRaises → thrown?."
   (:require [kotoba.test :refer [deftest is]]
-            [clojure.set :as set]
+            [kotoba.lang.coll :as set]
             [karakuri.methods.command :as command]
             [karakuri.methods.t2-browser :as sut]))
 
