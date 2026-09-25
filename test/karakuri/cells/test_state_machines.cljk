@@ -1,7 +1,7 @@
 (ns karakuri.cells.test-state-machines
   "State-machine tests for the karakuri session_broker cell (R0).
   1:1 port of cells/test_state_machines.py (ADR-2606160842). .solve() raises at R0; ValueError → ex-info."
-  (:require [kotoba.test :refer [deftest is]]
+  (:require [kotoba.lang.error :as kerror] [kotoba.test :refer [deftest is]]
             [karakuri.cells.session-broker.state-machine :as sm]))
 
 (defn- broker-read
@@ -37,24 +37,24 @@
     (is (= true (get-in cs ["payload" "authorization" "outwardGated"])))))  ; G6
 
 (deftest test-g1-refuses-third-party-account
-  (is (thrown-with-msg? clojure.lang.ExceptionInfo #"G1 violation"
+  (is (thrown-with-msg? kerror/ExceptionInfo #"G1 violation"
                         (broker-read :account-owner "someone-else"))))
 
 (deftest test-g1-refuses-non-member-principal
-  (is (thrown-with-msg? clojure.lang.ExceptionInfo #"G1 violation"
+  (is (thrown-with-msg? kerror/ExceptionInfo #"G1 violation"
                         (broker-read :principal "karakuri"))))
 
 (deftest test-g3-refuses-plaintext-secret
-  (is (thrown-with-msg? clojure.lang.ExceptionInfo #"G3 violation"
+  (is (thrown-with-msg? kerror/ExceptionInfo #"G3 violation"
                         (broker-read :secret-ref "hunter2-plaintext-password"))))
 
 (deftest test-g3-refuses-server-signature-on-mutate
-  (is (thrown-with-msg? clojure.lang.ExceptionInfo #"G3 violation"
+  (is (thrown-with-msg? kerror/ExceptionInfo #"G3 violation"
                         (broker-mutate :member-sig "member-sig" :server-sig "server-sig"))))
 
 (deftest test-g5-mutate-requires-member-signature
-  (is (thrown-with-msg? clojure.lang.ExceptionInfo #"G5 violation"
+  (is (thrown-with-msg? kerror/ExceptionInfo #"G5 violation"
                         (broker-mutate :member-sig ""))))
 
 (deftest test-solve-raises-at-r0
-  (is (thrown-with-msg? clojure.lang.ExceptionInfo #"R0 scaffold" (sm/solve {}))))
+  (is (thrown-with-msg? kerror/ExceptionInfo #"R0 scaffold" (sm/solve {}))))

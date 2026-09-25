@@ -18,13 +18,13 @@
   Entities are string-keyed maps keyed by ':ns/name' strings (kept verbatim, the seed.edn
   spelling). sha-256 + the live env read are behind #?(:clj …). Self-contained sha-256 (no
   sibling provides it). clojure.core only; portable .cljc."
-  (:require [kotoba.lang.text] [karakuri.methods.command :as command]))
+  (:require [kotoba.bytes :as kbytes] [kotoba.lang.text] [karakuri.methods.command :as command]))
 
 ;; ── sha-256 (self-contained; copied from the danjo budget_ledger exemplar) ────────────
 (defn- sha256-hex
   "String → lowercase hex sha-256 digest (UTF-8)."
   ^String [^String s]
-  #?(:clj (let [d (.digest (java.security.MessageDigest/getInstance "SHA-256") (.getBytes s "UTF-8"))]
+  #?(:clj (let [d (.digest (java.security.MessageDigest/getInstance "SHA-256") (kbytes/utf8-bytes s))]
             (apply str (map #(format "%02x" (bit-and % 0xff)) d)))
      :default (throw (ex-info "bind a sha-256 impl on this host" {}))))
 

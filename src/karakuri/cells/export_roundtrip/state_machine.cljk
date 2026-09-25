@@ -9,7 +9,7 @@
   Conventions: the dataclass ExportState → a plain map with the SAME string field keys the Python
   `cs.__dict__` round-trips; phase enum values stay strings; the export artifact keeps the kebab
   keyword keys produced by methods/export; OwnerViolation is the {:type :owner-violation} ex-info."
-  (:require [karakuri.methods.export :as export]))
+  (:require [kotoba.lang.error :as kerror] [karakuri.methods.export :as export]))
 
 ;; ── ExportPhase (enum — Python value identities preserved) ──
 (def export-phases
@@ -76,7 +76,7 @@
                              (export/build-export-plan (get cs "service")
                                                        :fmt (get cs "fmt")
                                                        :owner (get cs "owner")))}
-                 (catch clojure.lang.ExceptionInfo e
+                 (catch kerror/ExceptionInfo e
                    (if (owner-violation? e)
                      {:refused true}
                      (throw e))))]

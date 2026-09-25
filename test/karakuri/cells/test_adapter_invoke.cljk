@@ -1,7 +1,7 @@
 (ns karakuri.cells.test-adapter-invoke
   "State-machine tests for the karakuri adapter_invoke cell (R0).
   1:1 port of cells/test_adapter_invoke.py (ADR-2606160842). .solve() raises at R0."
-  (:require [kotoba.test :refer [deftest is]]
+  (:require [kotoba.lang.error :as kerror] [kotoba.test :refer [deftest is]]
             [karakuri.cells.adapter-invoke.state-machine :as sm]))
 
 (defn- run
@@ -69,4 +69,4 @@
 ;; ── R0 invariant ──
 
 (deftest test-solve-raises-at-r0
-  (is (thrown-with-msg? clojure.lang.ExceptionInfo #"R0 scaffold" (sm/solve {}))))
+  (is (thrown-with-msg? kerror/ExceptionInfo #"R0 scaffold" (sm/solve {}))))
