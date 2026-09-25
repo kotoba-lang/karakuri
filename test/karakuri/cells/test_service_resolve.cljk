@@ -1,7 +1,7 @@
 (ns karakuri.cells.test-service-resolve
   "State-machine tests for the karakuri service_resolve cell (R0).
   1:1 port of cells/test_service_resolve.py (ADR-2606160842). .solve() raises at R0."
-  (:require [kotoba.test :refer [deftest is]]
+  (:require [kotoba.lang.error :as kerror] [kotoba.test :refer [deftest is]]
             [karakuri.cells.service-resolve.state-machine :as sm]))
 
 (defn- resolve [service]
@@ -35,4 +35,4 @@
     (is (not (contains? (get cs "payload") "tier")))))
 
 (deftest test-solve-raises-at-r0
-  (is (thrown-with-msg? clojure.lang.ExceptionInfo #"R0 scaffold" (sm/solve {}))))
+  (is (thrown-with-msg? kerror/ExceptionInfo #"R0 scaffold" (sm/solve {}))))
