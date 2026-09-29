@@ -59,7 +59,7 @@ such a step raises (G2 / N2).
 
 R0 (design + working ServiceOp parser/planner + session_broker state machine + `:representative`
 service registry). **No live execution** — every adapter call is Council Lv6+ + operator gated (G6);
-R0 is parse / plan / dry-run only. See `90-docs/adr/2606039200-*` and `CLAUDE.md` for gates G1–G9 and
+R0 is parse / plan / dry-run only. See `90-docs/adr/2606039200-*` and `AGENTS.md` for gates G1–G9 and
 non-goals N1–N6.
 
 ## Try the planner (offline, no network)
